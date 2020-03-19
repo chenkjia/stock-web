@@ -2,18 +2,27 @@
   div.stock-menu
     el-input.stock-search(v-model="searchValue",placeholder="请输入内容")
     el-menu.stock-list
-      el-menu-item.stock-item(v-for="o in 20",:key="o") {{'列表内容 ' + o }}
+      el-menu-item.stock-item(v-for="stock in stockList",:key="stock.symbol") {{ `${stock.symbol} ${stock.name}` }}
 </template>
 
 <script>
 
 export default {
   name: 'StockList',
+  data () {
+    return {
+      searchValue: '',
+      stockList: []
+    }
+  },
   methods: {
   },
   computed: {
   },
   created () {
+    this.$get({ url: '/stock?select=name symbol' }).then(res => {
+      this.stockList = res.data
+    })
   }
 }
 </script>
