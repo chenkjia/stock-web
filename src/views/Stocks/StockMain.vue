@@ -1,11 +1,14 @@
 <template lang="pug">
-  div StockMain
+  div {{activeStockSymbol}}
 </template>
 
 <script>
 
 export default {
   name: 'StockMain',
+  props: {
+    activeStockSymbol: String
+  },
   methods: {
   },
   computed: {

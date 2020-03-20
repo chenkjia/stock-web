@@ -1,8 +1,11 @@
 <template lang="pug">
   div.stock-menu
     el-input.stock-search(v-model="searchValue",placeholder="请输入内容")
-    el-menu.stock-list
-      el-menu-item.stock-item(v-for="stock in stockList",:key="stock.symbol") {{ `${stock.symbol} ${stock.name}` }}
+    el-menu.stock-list(@select="handleSelect")
+      el-menu-item.stock-item(
+        v-for="stock in resultStockList"
+        :key="stock.symbol"
+        :index="stock.symbol") {{ `${stock.symbol} ${stock.name}` }}
 </template>
 
 <script>
@@ -16,8 +19,16 @@ export default {
     }
   },
   methods: {
+    handleSelect (symbol) {
+      this.$emit('changeActiveStockSymbol', symbol)
+    }
   },
   computed: {
+    resultStockList () {
+      return this.searchValue === '' ? this.stockList : this.stockList.filter(stock => {
+        return stock.name.indexOf(this.searchValue) > -1 || stock.symbol.indexOf(this.searchValue) > -1
+      })
+    }
   },
   created () {
     this.$get({ url: '/stock?select=name symbol' }).then(res => {
