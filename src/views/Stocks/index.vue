@@ -1,9 +1,9 @@
 <template lang="pug">
   el-container#app-container
     el-aside(width="200px")
-      StockList(@changeActiveStockSymbol="changeActiveStockSymbol")
+      StockList(@changeActiveStock="changeActiveStock")
     el-main
-      StockMain(:activeStockSymbol="activeStockSymbol")
+      StockMain(:activeStockId="activeStockId")
 </template>
 
 <script>
@@ -18,12 +18,12 @@ export default {
   },
   data () {
     return {
-      activeStockSymbol: ''
+      activeStockId: ''
     }
   },
   methods: {
-    changeActiveStockSymbol (symbol) {
-      this.activeStockSymbol = symbol
+    changeActiveStock (id) {
+      this.activeStockId = id
     }
   }
 }

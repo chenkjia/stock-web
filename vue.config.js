@@ -4,7 +4,8 @@ module.exports = {
   configureWebpack: {
     externals: {
       'vue': 'Vue',
-      'moment': 'moment'
+      'moment': 'moment',
+      'echarts': 'echarts'
     }
   },
   // chainWebpack: process.env.NODE_ENV === 'production' ? config => {

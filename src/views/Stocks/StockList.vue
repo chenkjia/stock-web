@@ -5,7 +5,7 @@
       el-menu-item.stock-item(
         v-for="stock in resultStockList"
         :key="stock.symbol"
-        :index="stock.symbol") {{ `${stock.symbol} ${stock.name}` }}
+        :index="stock._id") {{ `${stock.symbol} ${stock.name}` }}
 </template>
 
 <script>
@@ -19,8 +19,8 @@ export default {
     }
   },
   methods: {
-    handleSelect (symbol) {
-      this.$emit('changeActiveStockSymbol', symbol)
+    handleSelect (id) {
+      this.$emit('changeActiveStock', id)
     }
   },
   computed: {
